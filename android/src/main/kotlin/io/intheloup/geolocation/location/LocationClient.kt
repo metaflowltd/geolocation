@@ -7,7 +7,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.location.Location
-import android.support.v4.app.ActivityCompat
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.api.ApiException
@@ -145,12 +145,12 @@ class LocationClient(private val activity: Activity) {
     }
 
     fun registerLocationUpdatesCallback(callback: (Result) -> Unit) {
-        check(locationUpdatesCallback == null, { "trying to register a 2nd location updates callback" })
+        check(locationUpdatesCallback == null) { "trying to register a 2nd location updates callback" }
         locationUpdatesCallback = callback
     }
 
     fun deregisterLocationUpdatesCallback() {
-        check(locationUpdatesCallback != null, { "trying to deregister a non-existent location updates callback" })
+        check(locationUpdatesCallback != null) { "trying to deregister a non-existent location updates callback" }
         locationUpdatesCallback = null
     }
 
